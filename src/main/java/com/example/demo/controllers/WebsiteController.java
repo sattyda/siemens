@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
 import com.example.demo.entities.User;
+import com.example.demo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,9 @@ import java.util.List;
 @Controller
 public class WebsiteController {
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/website")
     public String test(Model model , HttpSession httpSession){
 
@@ -20,10 +25,6 @@ public class WebsiteController {
 
         model.addAttribute("name" , "sattyda");
         List<User> userList = new ArrayList<>();
-
-        userList.add( new User( "rat" , "123"));
-        userList.add( new User( "cat" , "13"));
-        userList.add( new User( "mat" , "789"));
 
         model.addAttribute("users" , userList );
 
@@ -36,6 +37,12 @@ public class WebsiteController {
         model.addAttribute( "name" , httpSession.getAttribute("myName") );
 
 
+
         return "profile";
+    }
+
+    @GetMapping("/mylogin")
+    public String mylogin(){
+        return "mylogin";
     }
 }

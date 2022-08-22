@@ -30,6 +30,9 @@ public class WebController {
     @GetMapping("/myname/{name}/{color}")
     public String myName(  ){
         return  "hi";
+
+
+
     }
 
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1 th:text="${name}"></h1>
+
+
+<table style="background: aliceblue">
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Username</th>
+      <th>User EMail</th>
+      <th>User Mobile</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<script>
+
+  document.getElementsByTagName()[0].html("<tr></tr>");
+
+  var users = [
+    {
+      "id" : 12,
+      "username" : "2332"
+    }
+  ]
+
+
+  var tbody =$("tbody");
+
+  $(users).each(function (ind , val){
+    tbody.append("" +
+            "<tr>" +
+            "<td>"+ val.id +"</td>" +
+            "<td>"+ val.username +"</td>" +
+            "<td>"+ val.email +"</td>" +
+            "<td>"+ val.mobile +"</td>" +
+            "</tr>");
+  })
+
+
+  $.ajax({
+    url : "/users",
+    data : JSON.stringify({ }),
+    cache : false,
+    type : 'post',
+    dataType : 'json',
+    contentType: "application/json",
+    success : function (data) {
+      console.log(data);
+
+
+    }
+  });
+
+
+
+</script>
+
+</body>
+</html>
